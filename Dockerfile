@@ -21,13 +21,13 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
+RUN chown -R $USER:$USER $SERVER
+
 ADD ./csgo_ds.txt $SERVER/csgo_ds.txt
 ADD ./update.sh $SERVER/update.sh
 ADD ./autoexec.cfg $SERVER/csgo/csgo/cfg/autoexec.cfg
 ADD ./server.cfg $SERVER/csgo/csgo/cfg/server.cfg
 ADD ./csgo.sh $SERVER/csgo.sh
-
-RUN chown -R $USER:$USER $SERVER
 
 USER $USER
 RUN curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C $SERVER -xvz \
@@ -37,4 +37,4 @@ EXPOSE 27015/udp
 
 WORKDIR /home/$USER/hlserver
 ENTRYPOINT ["./csgo.sh"]
-CMD ["-console" "-usercon" "+game_type" "0" "+game_mode" "1" "+mapgroup" "mg_active" "+map" "de_cache"]
+CMD ["-console" "-usercon" "+game_type" "0" "+game_mode" "0" "+mapgroup" "mg_active" "+map" "de_mirage" "-net_port_try" "1" "-maxplayers_override" "20"]
