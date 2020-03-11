@@ -7,7 +7,7 @@ CS:GO server in docker with 128 tick enabled by default.
 ### Docker hub image
 
 ```shell
-docker pull gonzih/csgo-server
+docker pull gonzih/csgo-server 
 ```
 
 ### Details:
@@ -16,28 +16,10 @@ You can create new Dockerfile based on that image (FROM csgo) and customize it w
 
 ```shell
 # Build image and tag it as csgo
-docker build -t csgo github.com/Gonzih/docker-csgo-server
+docker build -t csgo github.com/pauloaguiar26/docker-csgo-server
 
-# Run image with default options (CMD in Dockerfile)
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo
-
-# Run image with as Classic Casual server
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_cache
-
-# Run image with as Classic Competetive server
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 0 +game_mode 1 +mapgroup mg_active +map de_cache
-
-# Run image with as Arm Race server
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 1 +game_mode 0 +mapgroup mg_armsrace +map ar_shoots
-
-# Run image with as Demolition server
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 1 +game_mode 1 +mapgroup mg_demolition +map de_lake
-
-# Run image with as Deathmatch server
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 1 +game_mode 2 +mapgroup mg_allclassic +map de_dust
-
-# To run lan server just add `+sv_lan 1` at end of command
-docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 0 +game_mode 1 +mapgroup mg_active +map de_cache +sv_lan 1
+# Run image with as Classic Casual server for 20 Players
+docker run -d -p 27015:27015 -p 27015:27015/udp csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_mirage -net_port_try 1 -maxplayers_override 20
 ```
 
 ### Running public server
