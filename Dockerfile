@@ -31,6 +31,7 @@ ADD ./csgo.sh $SERVER/csgo.sh
 
 RUN chown -R $USER:$USER $SERVER
 
+RUN wget http://www.us.apache.org/dist/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
 USER $USER
 RUN curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C $SERVER -xvz \
     && $SERVER/update.sh
